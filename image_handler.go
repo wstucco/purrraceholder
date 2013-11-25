@@ -21,11 +21,11 @@ func ImageHandler(w traffic.ResponseWriter, r *traffic.Request) {
 	w.Header().Set("Content-Type", "image/jpeg")
 
 	// at this point we can safely assume that the image file already exists
-	image_data, err := ioutil.ReadFile(w.GetVar("filename").(string))
-	if err != nil {
+	if image_data, err := ioutil.ReadFile(w.GetVar("filename").(string)); err != nil {
 		panic(err)
+	} else {
+		w.Write(image_data)
 	}
-	w.Write(image_data)
 }
 
 func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
@@ -47,8 +47,7 @@ func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
 		w.SetVar("height", height)
 
 		// log latest greatest creation
-		err = ioutil.WriteFile("cache/latest", []byte(fmt.Sprintf("%d/%d", width, height)), 0644)
-		if err != nil {
+		if err := ioutil.WriteFile("cache/latest", []byte(fmt.Sprintf("%d/%d", width, height)), 0644); err != nil {
 			// panic is trapped by Traffic and show us a nice stack trace in the browser
 			// a proper error handling should be provided, but in this simple example
 			// it's used to remind you to always check for errors
@@ -65,10 +64,16 @@ func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
 
 func GenerateImageCache(w traffic.ResponseWriter, r *traffic.Request) {
 
+	if !exists(cache_folder) {
+		if err := os.Mkdir(cache_folder, 0644); err != nil {
+			panic(err)
+		}
+	}
+
 	filename := fmt.Sprintf("%s/%dx%d.jpg", cache_folder, w.GetVar("width"), w.GetVar("height"))
 	w.SetVar("filename", filename)
 
-	if _, err := os.Stat(filename); os.IsNotExist(err) {
+	if !exists(filename) {
 		// file does not exists, generate a cached version
 		width := w.GetVar("width").(int)
 		height := w.GetVar("height").(int)
