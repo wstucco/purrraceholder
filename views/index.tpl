@@ -2,7 +2,7 @@
 	<div class="content">
 		<a href="https://github.com/wstucco/purrraceholder"><img style="position: relative; top: -32px; left: -32px; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>	
 		<h1>Welcome to the Purrraceholder</h1>
-		<h3>generate image placeholders powered by the Grumpy cat</h3>
+		<h3>Image placeholder service powered by the Grumpy cat</h3>
 		<br/>
 
 		<h3>How to use the Purrraceholder</h3>
