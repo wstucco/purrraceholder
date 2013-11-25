@@ -17,22 +17,15 @@ const image_file string = "assets/images/grumpy.jpg"
 const cache_folder string = "cache"
 
 func ImageHandler(w traffic.ResponseWriter, r *traffic.Request) {
-	width := w.GetVar("width").(int)
-	height := w.GetVar("height").(int)
-
-	src_image := loadImageFromFile(image_file)
-	pattern := resizeImage(src_image, width, height)
-
-	var dst_image image.Image
-	if width > height {
-		dst_image = tileImageHorizontally(pattern, width, height)
-	} else {
-		dst_image = tileImageVertically(pattern, width, height)
-	}
-
 	// output the image with the correct content-type
 	w.Header().Set("Content-Type", "image/jpeg")
-	jpeg.Encode(w, dst_image, &jpeg.Options{jpeg.DefaultQuality})
+
+	// at this point we can safely assume that the image file already exists
+	image_data, err := ioutil.ReadFile(w.GetVar("filename").(string))
+	if err != nil {
+		panic(err)
+	}
+	w.Write(image_data)
 }
 
 func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
@@ -73,10 +66,24 @@ func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
 func GenerateImageCache(w traffic.ResponseWriter, r *traffic.Request) {
 
 	filename := fmt.Sprintf("%s/%dx%d.jpg", cache_folder, w.GetVar("width"), w.GetVar("height"))
+	w.SetVar("filename", filename)
+
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		// file does not exists, generate a cached version
-		// src_image := loadImageFromFile(image_file)
+		width := w.GetVar("width").(int)
+		height := w.GetVar("height").(int)
 
+		src_image := loadImageFromFile(image_file)
+		pattern := resizeImage(src_image, width, height)
+
+		var dst_image image.Image
+		if width > height {
+			dst_image = tileImageHorizontally(pattern, width, height)
+		} else {
+			dst_image = tileImageVertically(pattern, width, height)
+		}
+
+		saveImageToFile(filename, dst_image)
 	}
 }
 
@@ -101,6 +108,16 @@ func loadImageFromFile(filename string) image.Image {
 	}
 
 	return image
+}
+
+func saveImageToFile(filename string, im image.Image) {
+	file, err := os.Create(filename)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	jpeg.Encode(file, im, &jpeg.Options{jpeg.DefaultQuality})
 }
 
 func resizeImage(im image.Image, width int, height int) image.Image {
