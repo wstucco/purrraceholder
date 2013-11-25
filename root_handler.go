@@ -10,11 +10,8 @@ type ResponseData struct {
 }
 
 func RootHandler(w traffic.ResponseWriter, r *traffic.Request) {
-	lastImageGenerates, err := ioutil.ReadFile("latest")
-	if err != nil {
-		panic(err)
-	}
+	last_image_generated, _ := ioutil.ReadFile("cache/latest")
 
-	responseData := &ResponseData{string(lastImageGenerates)}
+	responseData := &ResponseData{string(last_image_generated)}
 	w.RenderTemplate("index", responseData)
 }
