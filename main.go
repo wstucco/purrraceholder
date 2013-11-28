@@ -18,7 +18,7 @@ func main() {
 	// (:width=[\d+])(x(:height=[\d+]))?
 	// or something even simplier like
 	// (:width=:digits)(x(:height=:digits))(.(:format=json|xml|atom))
-	router.Get(`/(?P<width>\d+)x(?P<height>\d+)?/?`, ImageHandler).
+	router.Get(`/(?P<width>\d+)(x(?P<height>\d+))?/?`, ImageHandler).
 		AddBeforeFilter(RequireValidImageParameters).
 		AddBeforeFilter(GenerateImageCache)
 
