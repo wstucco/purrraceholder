@@ -13,5 +13,5 @@ func RootHandler(w traffic.ResponseWriter, r *traffic.Request) {
 	last_image_generated, _ := ioutil.ReadFile("cache/latest")
 
 	responseData := &ResponseData{string(last_image_generated)}
-	w.RenderTemplate("index", responseData)
+	w.Render("index", responseData)
 }

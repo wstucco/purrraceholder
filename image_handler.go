@@ -57,7 +57,7 @@ func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
 	} else {
 		// bad request
 		w.WriteHeader(http.StatusBadRequest)
-		w.RenderTemplate("400", nil)
+		w.Render("400")
 	}
 
 }
