@@ -32,5 +32,10 @@ func main() {
 	// Custom not found handler
 	router.NotFoundHandler = NotFoundHandler
 
+	// if not in development, add the static handler
+	if traffic.Env() == "production" {
+	  router.Use(traffic.NewStaticMiddleware(traffic.PublicPath()))
+	}	
+
 	router.Run()
 }
