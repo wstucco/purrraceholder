@@ -1,12 +1,15 @@
 package main
 
 import (
-	"github.com/pilu/traffic"
+		"github.com/pilu/traffic"
+		"os"
 )
 
 var router *traffic.Router
 
 func main() {
+	traffic.Logger().Printf("Port: %s\n", os.Getenv("PORT"))
+
 	router = traffic.New()
 
 	router.Get("/", RootHandler)
@@ -38,4 +41,5 @@ func main() {
 	}	
 
 	router.Run()
+
 }
