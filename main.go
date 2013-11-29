@@ -3,14 +3,20 @@ package main
 import (
 		"github.com/pilu/traffic"
 		"os"
+		"strconv"
 )
 
 var router *traffic.Router
 
 func main() {
-	traffic.Logger().Printf("Port: %s\n", os.Getenv("PORT"))
+	port, err := strconv.Atoi(os.Getenv("PORT"))
+	if err != nil {
+		port = traffic.DefaultPort
+	}
 
-	traffic.SetPort(os.Getenv("PORT"))
+	traffic.Logger().Printf("Port: %d\n", port)
+
+	traffic.SetPort(port)
 	router = traffic.New()
 
 	router.Get("/", RootHandler)
