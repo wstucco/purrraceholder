@@ -10,7 +10,7 @@ var router *traffic.Router
 func main() {
 	traffic.Logger().Printf("Port: %s\n", os.Getenv("PORT"))
 
-	traffic.setPort(os.Getenv("PORT"))
+	traffic.SetPort(os.Getenv("PORT"))
 	router = traffic.New()
 
 	router.Get("/", RootHandler)
