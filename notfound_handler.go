@@ -5,5 +5,5 @@ import (
 )
 
 func NotFoundHandler(w traffic.ResponseWriter, r *traffic.Request) {
-	w.RenderTemplate("404", nil)
+	w.Render("404")
 }
