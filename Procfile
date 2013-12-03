@@ -1,1 +1,1 @@
-web: purrraceholder
+web: ./purrraceholder
