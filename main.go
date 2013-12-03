@@ -40,6 +40,8 @@ func init() {
 	// Custom not found handler
 	router.NotFoundHandler = NotFoundHandler
 
+	traffic.SetHost("localhost")
+
 	// if not in development, add the static handler
 	if traffic.Env() == "production" {
 		router.Use(traffic.NewStaticMiddleware(traffic.PublicPath()))
