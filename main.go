@@ -6,7 +6,7 @@ import (
 
 var router *traffic.Router
 
-func main() {
+func init() {
 	router = traffic.New()
 
 	router.Get("/", RootHandler)
@@ -34,8 +34,11 @@ func main() {
 
 	// if not in development, add the static handler
 	if traffic.Env() == "production" {
-	  router.Use(traffic.NewStaticMiddleware(traffic.PublicPath()))
-	}	
+		router.Use(traffic.NewStaticMiddleware(traffic.PublicPath()))
+	}
 
+}
+
+func main() {
 	router.Run()
 }
