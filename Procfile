@@ -1,1 +1,1 @@
-web: bin/purrraceholder
+web: purrraceholder
