@@ -1,1 +1,1 @@
-web: purrraceholder
+web: /app/bin/purrraceholder
