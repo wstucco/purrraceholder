@@ -1,0 +1,19 @@
+{
+	"ImportPath": "purrraceholder",
+	"GoVersion": "go1.1.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/nfnt/resize",
+			"Rev": "f8ec7103308a536c5928f3161605b5257da21210"
+		},
+		{
+			"ImportPath": "github.com/pilu/config",
+			"Rev": "e72d636137cbca93438ff9f2ba9040f9cb8bdb7a"
+		},
+		{
+			"ImportPath": "github.com/pilu/traffic",
+			"Comment": "v0.4.0-4-geee418e",
+			"Rev": "eee418e011f90b449a09dee2b37dcd04ad5ace96"
+		}
+	]
+}
