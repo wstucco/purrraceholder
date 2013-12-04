@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/wstucco/traffic"
+	"github.com/pilu/traffic"
 	"os"
 	"strconv"
 )
@@ -9,12 +9,6 @@ import (
 var router *traffic.Router
 
 func init() {
-	port, err := strconv.Atoi(os.Getenv("PORT"))
-	if err != nil {
-		port = traffic.DefaultPort
-	}
-
-	traffic.SetPort(port)
 	router = traffic.New()
 
 	router.Get("/", RootHandler)
