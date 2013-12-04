@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/pilu/traffic"
+	"github.com/wstucco/traffic"
 )
 
 func NotFoundHandler(w traffic.ResponseWriter, r *traffic.Request) {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/pilu/traffic"
+	"github.com/wstucco/traffic"
 	"os"
 	"strconv"
 )
@@ -39,8 +39,6 @@ func init() {
 
 	// Custom not found handler
 	router.NotFoundHandler = NotFoundHandler
-
-	traffic.SetHost("localhost")
 
 	// if not in development, add the static handler
 	if traffic.Env() == "production" {

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/nfnt/resize"
-	"github.com/pilu/traffic"
+	"github.com/wstucco/traffic"
 	"image"
 	"image/draw"
 	"image/jpeg"

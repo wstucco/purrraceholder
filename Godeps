@@ -1,5 +1,5 @@
 {
-	"ImportPath": "purrraceholder",
+	"ImportPath": "github.com/wstucco/purrraceholder",
 	"GoVersion": "go1.1.2",
 	"Deps": [
 		{
@@ -11,9 +11,9 @@
 			"Rev": "e72d636137cbca93438ff9f2ba9040f9cb8bdb7a"
 		},
 		{
-			"ImportPath": "github.com/pilu/traffic",
-			"Comment": "v0.4.0-4-geee418e",
-			"Rev": "eee418e011f90b449a09dee2b37dcd04ad5ace96"
+			"ImportPath": "github.com/wstucco/traffic",
+			"Comment": "v0.4.0-5-g940a383",
+			"Rev": "940a3833246fde6e572a1fc71011b7e72936d47c"
 		}
 	]
 }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/pilu/traffic"
+	"github.com/wstucco/traffic"
 	"log"
 	"net/http"
 	"net/http/httptest"
