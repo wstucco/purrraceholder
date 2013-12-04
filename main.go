@@ -2,8 +2,6 @@ package main
 
 import (
 	"github.com/pilu/traffic"
-	"os"
-	"strconv"
 )
 
 var router *traffic.Router
