@@ -15,7 +15,7 @@ import (
 )
 
 const image_file string = "assets/images/grumpy.jpg"
-const cache_folder string = "tmp"
+const cache_folder string = "/tmp"
 
 func ImageHandler(w traffic.ResponseWriter, r *traffic.Request) {
 	// output the image with the correct content-type
