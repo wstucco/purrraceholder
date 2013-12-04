@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 )
 
@@ -47,7 +48,7 @@ func RequireValidImageParameters(w traffic.ResponseWriter, r *traffic.Request) {
 		w.SetVar("height", height)
 
 		// log latest greatest creation
-		if err := ioutil.WriteFile("cache/latest", []byte(fmt.Sprintf("%d/%d", width, height)), 0644); err != nil {
+		if err := ioutil.WriteFile(filepath.Join(cache_folder, "/latest"), []byte(fmt.Sprintf("%d/%d", width, height)), 0644); err != nil {
 			// panic is trapped by Traffic and show us a nice stack trace in the browser
 			// a proper error handling should be provided, but in this simple example
 			// it's used to remind you to always check for errors
