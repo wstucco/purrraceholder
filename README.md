@@ -12,8 +12,8 @@ as explained in [this blog post](http://dev.mikamai.com/post/68453619468/buildin
 `<img src="http://localhost:7000/400x300">` to embed the image in your site
 
 Purrraceholder is alive (and slow) on [heroku](http://purrraceholder.herokuapp.com)  
-Purrraceholder is alive (and slow) on [heroku](http://purrraceholder.herokuapp.com)  
-
+There also a faster copy on [DigitalOcean](http://purrraceholder.pheeco.it)
+>>>>>>> 8364a8b32c97267032449a9f310d371ba379cc65
 
 ###Grumpy cat approves
 
